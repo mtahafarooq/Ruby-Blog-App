@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'users/show'
 
   get 'welcome/index'
+
  
   resources :articles do
   	resources :comments

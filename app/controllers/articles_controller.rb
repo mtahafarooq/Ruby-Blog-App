@@ -7,10 +7,10 @@ class ArticlesController < ApplicationController
   def index
    
     @articles = Article.where(:user_id => current_user.id)
-   # @articles = current_user.articles
+   #@articles = current_user.articles
     
     
-    puts @articles.inspect
+    
   end
 	
   def show
@@ -20,11 +20,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = current_user.articles.build
-  end
-
-  def user
-    @article = User.find(params[:id])
-    @user = @article.user
   end
 
  def edit

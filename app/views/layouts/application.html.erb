@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <head>
-    <title>blog</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Blog" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Blog" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
-</head>
-
+  </head>
   <body>
-  	<% if current_user %>
-    Welcome <%= current_user.email %> <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-<% else %>
-    <%= link_to 'Login', new_user_session_path %>
-<% end %>
-  
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %> alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <%= value %>
-    </div>
-<% end %>
-
-<%= yield %>
-
-
+    <header>
+      <%= render 'layouts/navigation' %>
+      
+    </header>
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </main>
   </body>
 </html>
